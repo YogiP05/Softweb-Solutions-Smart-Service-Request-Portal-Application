@@ -92,7 +92,7 @@ Optional NLP-based ticket categorization
 
 Server-side rendered visualizations (heatmaps, line graphs) 
 
- 
+
 
 Sample Service Types 
 
