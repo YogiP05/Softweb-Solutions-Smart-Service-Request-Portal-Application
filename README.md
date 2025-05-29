@@ -6,7 +6,7 @@ The Smart Service Request Portal is a full-stack, AI-enhanced web application de
 
 Basically, an app for the company to keep track of employee maintenance  
 
- 
+
 
 Features 
 
