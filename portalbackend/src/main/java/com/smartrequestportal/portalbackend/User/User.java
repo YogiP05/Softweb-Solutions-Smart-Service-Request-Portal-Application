@@ -19,7 +19,29 @@ public class User {
     private userRole role;
     private Boolean isActive;
 
+    @Column(nullable = false)
+    public String securityQuestion;
 
+
+    @JsonIgnore
+    @Column(nullable = false)
+    public String securityAnswerHashed;
+
+    public String getSecurityQuestion() {
+        return securityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        this.securityQuestion = securityQuestion;
+    }
+
+    public String getSecurityAnswerHashed() {
+        return securityAnswerHashed;
+    }
+
+    public void setSecurityAnswerHashed(String securityAnswerHashed) {
+        this.securityAnswerHashed = securityAnswerHashed;
+    }
 
     public User() {
     }
@@ -58,7 +80,7 @@ public class User {
         this.email = email;
     }
 
-    protected String getHashedPassword() {
+    public String getHashedPassword() {
         return hashedPassword;
     }
 
