@@ -62,4 +62,35 @@ public class authService {
 
         return new registerResponse("Your user has been registered");
     }
+
+    public String getSecurityQuestion(String email) {
+        Optional<User> optionalUser = userRepo.findByEmail(email);
+
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+
+        User user = optionalUser.get();
+
+        return user.getSecurityQuestion();
+    }
+
+    public boolean validateSecurityQuestion(String email, String answer) {
+        Optional<User> optionalUser = userRepo.findByEmail(email);
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+        User user = optionalUser.get();
+        return passwordEncoder.matches(answer, user.getHashedPassword());
+    }
+
+    public void resetPassword(String email, String newPassword) {
+        Optional<User> optionalUser = userRepo.findByEmail(email);
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+        User user = optionalUser.get();
+        user.setHashedPassword(passwordEncoder.encode(newPassword));
+        userRepo.save(user);
+    }
 }
