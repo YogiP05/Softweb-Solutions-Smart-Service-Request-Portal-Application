@@ -24,5 +24,6 @@ public class jwtService {
                 .setExpiration(new Date(expiresAt))
                 .signWith(SignatureAlgorithm.HS256, SECRET.getBytes())
                 .compact();
+
     }
 }
