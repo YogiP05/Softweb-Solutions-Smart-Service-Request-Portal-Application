@@ -1,4 +1,4 @@
-package com.smartportal.service_backend.model;
+package com.smartrequestportal.portalbackend.model;
 
 import jakarta.persistence.*;
 import lombok.*;

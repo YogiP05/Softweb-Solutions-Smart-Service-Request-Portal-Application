@@ -1,7 +1,7 @@
-package com.smartportal.service_backend.service;
+package com.smartrequestportal.portalbackend.service;
 
+import com.smartrequestportal.portalbackend.model.ServiceRequest;
 import com.smartrequestportal.portalbackend.repository.ServiceRequestRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,8 +11,11 @@ import java.util.Optional;
 @Service
 public class ServiceRequestService {
 
-    @Autowired
     private ServiceRequestRepository repository;
+
+    public ServiceRequestService(ServiceRequestRepository repository) {
+        this.repository = repository;
+    }
 
     public ServiceRequest createRequest(ServiceRequest request) {
         List<ServiceRequest> recent = repository.findByTitleAndDescriptionAndCreatedAtAfter(
@@ -65,4 +68,21 @@ public class ServiceRequestService {
     public ServiceRequest save(ServiceRequest request){
         return repository.save(request);
     }
+
+    public List<ServiceRequest> filterRequests(String status, String category, String assignedTo) {
+        return repository.filterDashboard(status, category, assignedTo);
+    }
+
+    public List<ServiceRequest> searchByTitleOrDescription(String keyword) {
+        return repository.findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(keyword, keyword);
+    }
+
+    public List<ServiceRequest> getRecentRequests(LocalDateTime after) {
+        return repository.findByCreatedAtAfter(after);
+    }
+
+
+
+
+
 }

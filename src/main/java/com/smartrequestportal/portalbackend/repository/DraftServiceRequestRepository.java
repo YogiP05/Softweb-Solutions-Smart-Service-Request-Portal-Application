@@ -1,8 +1,8 @@
-package com.smartportal.service_backend.repository;
+package com.smartrequestportal.portalbackend.repository;
 
-import com.smartportal.service_backend.model.DraftServiceRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import com.smartrequestportal.portalbackend.model.DraftServiceRequest;
 
 import java.util.List;
 

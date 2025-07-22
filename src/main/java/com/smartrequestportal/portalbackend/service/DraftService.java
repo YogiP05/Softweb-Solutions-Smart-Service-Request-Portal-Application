@@ -1,8 +1,8 @@
-package com.smartportal.service_backend.service;
+package com.smartrequestportal.portalbackend.service;
 
 
-import com.smartportal.service_backend.model.DraftServiceRequest;
-import com.smartportal.service_backend.repository.DraftServiceRequestRepository;
+import com.smartrequestportal.portalbackend.model.DraftServiceRequest;
+import com.smartrequestportal.portalbackend.repository.DraftServiceRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -8,8 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PortalbackendApplication {
 
-	public static <logger> void main(String[] args) {
-		SpringApplication.run(PortalbackendApplication.class, args);
-	}
+	private static final Logger logger = LoggerFactory.getLogger(PortalbackendApplication.class);
 
+	public static void main(String[] args) {
+		SpringApplication.run(PortalbackendApplication.class, args);
+		logger.info("Application started successfully.");
+	}
 }
