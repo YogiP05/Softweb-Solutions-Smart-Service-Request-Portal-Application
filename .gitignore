@@ -34,3 +34,4 @@ build/
 
 src/main/resources/ServiceAccountKey.json
 src/main/resources/application.properties
+docker-compose.yml
