@@ -22,6 +22,15 @@ public class ServiceRequest {
     private String assignedTo;
     private LocalDateTime createdAt;
     private LocalDateTime lastModifiedAt;
+    private Integer priority;
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
 
     // --- Getters ---
     public Long getId() {

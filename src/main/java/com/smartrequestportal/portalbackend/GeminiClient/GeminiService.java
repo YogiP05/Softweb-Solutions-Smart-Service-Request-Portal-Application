@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class GeminiService {
@@ -48,5 +52,22 @@ public class GeminiService {
         );
 
         return response.getBody();
+    }
+
+    public List<Integer> parseUrgencyScores(String response, int expectedCount) {
+        List<Integer> scores = new ArrayList<>();
+
+        Pattern pattern = Pattern.compile("(\\d{1,2})");
+        Matcher matcher = pattern.matcher(response);
+
+        while (matcher.find() && scores.size() < expectedCount) {
+            scores.add(Integer.parseInt(matcher.group(1)));
+        }
+
+        while (scores.size() < expectedCount) {
+            scores.add(5);
+        }
+
+        return scores;
     }
 }

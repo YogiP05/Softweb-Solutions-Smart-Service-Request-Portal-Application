@@ -17,14 +17,15 @@ public interface ServiceRequestRepository extends JpaRepository<ServiceRequest, 
     List<ServiceRequest> findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String titleKeyword, String descriptionKeyword);
     List<ServiceRequest> findByCreatedAtAfter(LocalDateTime after);
 
-
     @Query("SELECT s FROM ServiceRequest s WHERE " +
             "(:status IS NULL OR s.status = :status) AND " +
             "(:category IS NULL OR s.category = :category) AND " +
-            "(:technician IS NULL OR s.assignedTo = :technician)")
+            "(:technician IS NULL OR s.assignedTo = :technician) AND " +
+            "(:urgency IS NULL OR s.priority = :urgency)")
     List<ServiceRequest> filterDashboard(
             @Param("status") String status,
             @Param("category") String category,
-            @Param("technician") String technician
+            @Param("technician") String technician,
+            @Param("urgency") Integer urgency
     );
 }

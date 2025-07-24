@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
@@ -33,6 +34,8 @@ public class ServiceRequestController {
             return ResponseEntity.status(HttpStatus.CREATED).body(saved);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -94,9 +97,10 @@ public class ServiceRequestController {
     public ResponseEntity<?> filterRequests(
             @RequestParam(required = false) String status,
             @RequestParam(required = false) String category,
-            @RequestParam(required = false) String technician
+            @RequestParam(required = false) String technician,
+            @RequestParam(required = false) Integer urgency
     ) {
-        return ResponseEntity.ok(serviceRequestService.filterRequests(status, category, technician));
+        return ResponseEntity.ok(serviceRequestService.filterRequests(status, category, technician, urgency));
     }
 
     @GetMapping("/requests/search")
